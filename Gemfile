@@ -15,7 +15,7 @@ gem 'jbuilder'
 gem 'redis'
 gem 'httparty'
 gem 'figaro', git: 'https://github.com/ryanckulp/figaro' # patched version for Ruby 3.2.0 File.exist?()
-gem 'rename', '1.1.3', git: 'https://github.com/ryanckulp/rename' # remove this gem after use
+# gem 'rename', '1.1.3', git: 'https://github.com/ryanckulp/rename' # remove this gem after use
 gem 'delayed' # delayed_job_active_record rails 7 fork: https://github.com/betterment/delayed
 gem 'metamagic' # easily insert metatags for SEO / opengraph
 gem 'rack-cors', :require => 'rack/cors'
