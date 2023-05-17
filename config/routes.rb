@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :widgets
   root 'pages#home'
 
   devise_for :users
@@ -32,4 +31,8 @@ Rails.application.routes.draw do
     # convenience helper
     get 'admin', to: 'admin/dashboard#index'
   end
+
+    resources :widgets, except: [:show]
+
+
 end

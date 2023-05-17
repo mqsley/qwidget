@@ -4,7 +4,7 @@ FactoryBot.define do
     welcome_message { "MyString" }
     background_color { "MyString" }
     shape { "MyString" }
-    enables { false }
+    enabled { false }
     user { nil }
   end
 end
