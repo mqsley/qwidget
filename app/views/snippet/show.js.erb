@@ -1,0 +1,43 @@
+
+
+var QwidgetWidget  = {
+  circleStyles: { backgroundColor: 'black', height: '50px', width: '50px', borderRadius: '50%', position: 'absolute', bottom: '0px', right: '5px', cursor: 'pointer' },
+  welcome_message: 'send me a note',
+  formHTML: '<%= j render "form" %>',
+
+  init: function() {
+    console.log('initialized working');
+    this.showIcon();
+  },
+
+  showForm: function () {
+    document.body.insertAdjacentHTML('beforeend', this.formHTML);
+    hideIcon();
+  },
+
+  hideForm: function () {
+    document.getElementById('qwidget_widget').remove();
+    showIcon();
+  },
+
+  hideIcon: function () {
+    document.getElementById('qwidget_icon').remove();
+
+  },
+
+  sendMessage: function () {
+  },
+
+  showIcon: function () {
+    let icon = document.createElement('span');
+    icon.id = 'qwidget_icon';
+    icon.addEventListener( 'click', this.showForm.bind(this));
+    Object.assign(icon.style, this.circleStyles);
+
+    document.body.append(icon);
+  },
+
+}
+
+
+QwidgetWidget.init();
