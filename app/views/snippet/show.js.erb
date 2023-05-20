@@ -5,6 +5,7 @@ var QwidgetWidget  = {
   welcome_message: 'send me a note',
   formHTML: '<%= j render "form" %>',
   cssStyles: "<%= asset_url('tailwind.css') %>",
+  thanksHTML: '<div id="thanks-note">Thanks!</div>',
 
   init: function() {
     console.log('initialized working');
@@ -47,6 +48,21 @@ var QwidgetWidget  = {
     document.body.append(icon);
   },
 
+  sayThanks: function () {
+    document.body.insertAdjacentHTML('beforeend', this.thanksHTML);
+    var thanksNote = document.getElementById('thanks-note');
+    thanksNote.style.display = 'block';
+
+    // Trigger animation
+    thanksNote.style.animationPlayState = 'running';
+
+    // Hide the thanks note after the animation ends
+    setTimeout(function() {
+      thanksNote.style.display = 'none';
+    }, 2000); // Duration of the animation in milliseconds
+
+  },
+
   submitForm: function (e) {
     e.preventDefault();
     let form = e.target;
@@ -55,7 +71,7 @@ var QwidgetWidget  = {
       body: new FormData(form)
     }).then((response) => {
       console.log('success response received! you hide the form and show a thank you message now.');
-
+      QwidgetWidget.sayThanks()
       QwidgetWidget.hideForm();
     })
   }
