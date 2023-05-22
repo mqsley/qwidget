@@ -14,6 +14,10 @@
  *= require_self
  */
 
+ .white-font {
+   color: white;
+ }
+
  .circle {
     height: 50px;
     width: 50px;

@@ -23,6 +23,7 @@ var QwidgetWidget  = {
   showForm: function () {
     document.body.insertAdjacentHTML('beforeend', this.formHTML);
     document.getElementById('new_message').addEventListener('submit', this.submitForm);
+    document.getElementById('exit').addEventListener( 'click', this.hideForm.bind(this));
     this.hideIcon();
   },
 
