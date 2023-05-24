@@ -1,11 +1,16 @@
 class MessagesController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  before_action :set_widget
+  skip_before_action :verify_authenticity_token, only: [:show]
+  before_action :set_widget, only: [:show]
 
   def create
     @widget.messages.create!(message_params)
     head :ok
   end
+
+  def index
+    @messages = current_user.messages.order(created_at: :desc)
+  end
+
 
   private
 
