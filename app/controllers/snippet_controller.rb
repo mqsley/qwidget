@@ -8,7 +8,7 @@ end
 private
 
   def set_snippet
-    @widget = Widget.find_by(client_id: params[:id])
+    @widget = Widget.find_by(client_id: params[:client_id])
   end
 
 

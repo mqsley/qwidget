@@ -6,7 +6,7 @@
       <%= link_to widget.name, edit_widget_path(widget), class: 'underline text-blue-600' %>
     </td>
     <td class="w-full">
-      <input class="w-full" type="text" readonly name="" value="<script src='https://<%= ENV['base_url'] %>/widget.js?client_id=<%= widget.client_id %>'></script>">
+      <input class="w-full" type="text" readonly name="" value="<%= snippet_code(widget)%>">
     </td>
     <td>
       <%= link_to 'Copy', '#', class: "rounded-lg py-2 px-3 bg-blue-600 text-white block text-sm" %>

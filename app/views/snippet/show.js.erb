@@ -1,19 +1,25 @@
 
 
 var QwidgetWidget  = {
-  circleStyles: { backgroundColor: 'black', height: '50px', width: '50px', borderRadius: '50%', position: 'absolute', bottom: '0px', right: '5px', cursor: 'pointer' },
-  welcome_message: 'send me a note',
+  iconStyles: {
+    circle: { backgroundColor: 'black', height: '50px', width: '50px', borderRadius: '50%', position: 'absolute', bottom: '0px', right: '5px', cursor: 'pointer'},
+    square: { backgroundColor: 'black', height: '50px', width: '50px', borderRadius: '0%', position: 'absolute', bottom: '0px', right: '5px', cursor: 'pointer'},
+    rectangle: { backgroundColor: 'black', height: '50px', width: '100px', borderRadius: '10%', position: 'absolute', bottom: '0px', right: '5px', cursor: 'pointer'},
+  },
+  welcomeMessage: '<%= @widget.welcome_message %>',
+  backgroundColor: '<%= @widget.background_color %>',
   formHTML: '<%= j render "form" %>',
   cssStyles: "<%= asset_url('tailwind.css') %>",
   thanksHTML: '<div id="thanks-note">Thanks!</div>',
+  shape: '<%= @widget.shape %>',
+
 
   init: function() {
-    console.log('initialized working');
     this.showIcon();
     this.plantCss();
   },
 
-  plantCss: function() {
+  plantCss: function() {yew
     let stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet';
     stylesheet.href = this.cssStyles;
@@ -22,9 +28,25 @@ var QwidgetWidget  = {
 
   showForm: function () {
     document.body.insertAdjacentHTML('beforeend', this.formHTML);
+
+    this.customizeForm();
+
     document.getElementById('new_message').addEventListener('submit', this.submitForm);
     document.getElementById('exit').addEventListener( 'click', this.hideForm.bind(this));
     this.hideIcon();
+  },
+
+  customizeForm: function () {
+    var self = this;
+    //attcje cliend id
+    document.getElementById('client_id').value = '<%= @widget.client_id %>';
+    // wrelcme message
+    document.getElementById('blog_text_widget_welcome_message').innerText = self.welcomeMessage;
+    // colors
+    let coloredItems = document.getElementsByClassName('blog_text_widget_background_color');
+    Array.from(coloredItems).forEach(function(el) {
+      el.style.backgroundColor = self.backgroundColor;
+    });
   },
 
   hideForm: function () {
@@ -40,12 +62,16 @@ var QwidgetWidget  = {
   sendMessage: function () {
   },
 
+  customizeIcon: function (icon) {
+    Object.assign(icon.style, this.iconStyles[this.shape]);
+
+  },
+
   showIcon: function () {
     let icon = document.createElement('span');
     icon.id = 'qwidget_icon';
     icon.addEventListener( 'click', this.showForm.bind(this));
-    Object.assign(icon.style, this.circleStyles);
-
+    this.customizeIcon(icon);
     document.body.append(icon);
   },
 

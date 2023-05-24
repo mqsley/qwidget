@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   def create
     @widget.messages.create!(message_params)
-    head: ok
+    head :ok
   end
 
   private
