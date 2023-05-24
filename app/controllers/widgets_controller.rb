@@ -36,7 +36,7 @@ class WidgetsController < ApplicationController
   def update
     respond_to do |format|
       if @widget.update(widget_params)
-        format.html { redirect_to widget_url(@widget), notice: "Widget was successfully updated." }
+        format.html { redirect_to '/widgets', notice: "Widget was successfully updated." }
         format.json { render :show, status: :ok, location: @widget }
       else
         format.html { render :edit, status: :unprocessable_entity }
