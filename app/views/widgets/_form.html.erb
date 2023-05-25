@@ -24,7 +24,7 @@
 
   <div class="my-5">
     <%= form.label :background_color %><br>
-    <%= form.color_field :background_color %>
+    <%= form.color_field :background_color, onchange: 'previewBackgroundColor(this)' %>
   </div>
 
   <div class="my-5">
