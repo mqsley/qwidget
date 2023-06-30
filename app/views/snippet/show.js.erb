@@ -47,6 +47,11 @@ var QwidgetWidget  = {
     Array.from(coloredItems).forEach(function(el) {
       el.style.backgroundColor = self.backgroundColor;
     });
+
+    <%= if @widget.avatar.present? %>
+      let avatarSrc = '<%= Rails.application.routes.url_helpers.url_for(@widget.avatar) %>';
+      document.getElementById('blog_text_widget_avatar').src = avatarSrc;
+    <% end %>
   },
 
   hideForm: function () {
@@ -61,6 +66,8 @@ var QwidgetWidget  = {
 
   sendMessage: function () {
   },
+
+
 
   customizeIcon: function (icon) {
     Object.assign(icon.style, this.iconStyles[this.shape]);

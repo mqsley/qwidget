@@ -1,10 +1,10 @@
 class WidgetsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :set_widget, only: %i[  edit update destroy ]
 
   # GET /widgets or /widgets.json
   def index
-    @widget = current_user.widgets
+    @widgets = current_user.widgets
   end
 
 
@@ -64,6 +64,6 @@ class WidgetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def widget_params
-      params.require(:widget).permit(:name, :welcome_message, :background_color, :shape, :enabled)
+      params.require(:widget).permit(:name, :welcome_message, :background_color, :shape, :enabled, :avatar)
     end
 end
