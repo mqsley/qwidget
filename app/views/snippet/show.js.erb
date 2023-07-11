@@ -48,7 +48,7 @@ var QwidgetWidget  = {
       el.style.backgroundColor = self.backgroundColor;
     });
 
-    <%= if @widget.avatar.present? %>
+    <% if @widget.avatar.present? %>
       let avatarSrc = '<%= Rails.application.routes.url_helpers.url_for(@widget.avatar) %>';
       document.getElementById('blog_text_widget_avatar').src = avatarSrc;
     <% end %>
