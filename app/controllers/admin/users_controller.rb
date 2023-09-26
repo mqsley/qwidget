@@ -13,7 +13,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     email = @user.email
     DestroyUser.new(@user).call
-    redirect_to admin_dashboard_index_path, notice: "User '#{email}' was destroyed."
+    redirect_to admin_dashboard_path, notice: "User '#{email}' was destroyed."
   end
 
   private
