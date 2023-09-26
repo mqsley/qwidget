@@ -9,8 +9,9 @@ class Message < ApplicationRecord
   def notify_user
     SmsService.new(self).send_text! if user.phone?
     MessagesMailer.notification(self).deliver
-
   end
+
+  handle_asynchronously :notify_user
 
 
   def self.to_csv(messages)

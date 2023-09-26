@@ -7,6 +7,7 @@ var QwidgetWidget  = {
     rectangle: { backgroundColor: 'black', height: '50px', width: '100px', borderRadius: '10%', position: 'absolute', bottom: '0px', right: '5px', cursor: 'pointer'},
   },
   welcomeMessage: '<%= @widget.welcome_message %>',
+  enabled: '<%= @widget.enabled %>',
   backgroundColor: '<%= @widget.background_color %>',
   formHTML: '<%= j render "form" %>',
   cssStyles: "<%= asset_url('tailwind.css') %>",
@@ -15,8 +16,10 @@ var QwidgetWidget  = {
 
 
   init: function() {
-    this.showIcon();
-    this.plantCss();
+    if (this.enabled == 'true') {
+      this.showIcon();
+      this.plantCss();
+    }
   },
 
   plantCss: function() {yew
