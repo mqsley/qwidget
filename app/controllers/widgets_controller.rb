@@ -11,7 +11,11 @@ class WidgetsController < ApplicationController
 
   # GET /widgets/new
   def new
+    if !current_user.paying_customer? && current_user.widgets.count >= 3
+      redirect_to subscribe_index_path, alert: "you need a subscription for more than 3 widgets"
+    else
     @widget = current_user.widgets.new
+    end
   end
 
   # GET /widgets/1/edit

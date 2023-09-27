@@ -7,6 +7,7 @@ class Message < ApplicationRecord
   end
 
   def notify_user
+    return if !user.paying_customer? && user.messages.count >= 50
     SmsService.new(self).send_text! if user.phone?
     MessagesMailer.notification(self).deliver
   end

@@ -6,7 +6,14 @@ class MessagesController < ApplicationController
 
 
   def index
+
+    if current_user.paying_customer?
     @messages = current_user.messages.order(created_at: :desc)
+    else
+    @messages = current_user.messages.order(created_at: :asc).limit(50)
+    end
+
+    
       respond_to do |format|
         format.html { @messages }
         format.csv { send_data(Message.to_csv(@messages), filename: "messages.csv") }
