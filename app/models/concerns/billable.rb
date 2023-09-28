@@ -18,7 +18,7 @@ module Billable
 
     update(stripe_customer_id: customer.id)
   end
-  # handle_asynchronously :setup_stripe_customer
+  handle_asynchronously :setup_stripe_customer
 
   # done after user adds payment method, for easy CVR metrics inside Stripe UI
   def set_stripe_subscription
@@ -29,4 +29,7 @@ module Billable
     subscription_id = cust.subscriptions.first.id
     update(stripe_subscription_id: subscription_id)
   end
+
+
+
 end

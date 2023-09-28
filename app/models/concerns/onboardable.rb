@@ -3,6 +3,7 @@ module Onboardable
 
   included do
     after_create :send_welcome_email
+
   end
 
   def finished_onboarding?
@@ -13,4 +14,8 @@ module Onboardable
     UserMailer.welcome(self).deliver
   end
   # handle_asynchronously :send_welcome_email
+
+
+
+
 end

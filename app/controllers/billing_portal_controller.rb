@@ -1,6 +1,7 @@
 class BillingPortalController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :verify_authenticity_token, only: [:create] # ajax
+  after_action :set_paying, only: [:create]
 
   def create
     url = current_user.finished_onboarding? ? modify_subscription : begin_subscription
@@ -9,6 +10,7 @@ class BillingPortalController < ApplicationController
       format.html { redirect_to url, allow_other_host: true }
       format.json { render json: { url: url } }
     end
+
   end
 
   def destroy
@@ -20,6 +22,7 @@ class BillingPortalController < ApplicationController
   # invoked from /subscribe during onboarding
   def begin_subscription
     session = Stripe::Checkout::Session.create({
+      #this is inside a session - we can't mess with the code in here
       customer: current_user.stripe_customer_id,
       payment_method_types: ['card'],
       mode: 'subscription',
@@ -30,7 +33,13 @@ class BillingPortalController < ApplicationController
       }],
       success_url: "#{ENV['BASE_URL']}#{dashboard_path}?subscribed=true",
       cancel_url: "#{ENV['BASE_URL']}#{account_index_path}?aborted=true"
+
     })
+
+    def set_paying
+      current_user.update(paying_customer: true)
+    end
+
 
     session.url
   end
