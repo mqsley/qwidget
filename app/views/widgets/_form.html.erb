@@ -23,6 +23,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :font_color %>
+    <%= form.color_field :font_color, onchange: 'previewFontColor(this)' %>
+  </div>
+          
+  <div class="my-5">
     <%= form.label :background_color %><br>
     <%= form.color_field :background_color, onchange: 'previewBackgroundColor(this)' %>
   </div>

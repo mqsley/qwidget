@@ -25,6 +25,13 @@
     });
   }
 
+  function previewFontColor (colorPicker) {
+    let fontColoredItems = document.getElementsByClassName('blog_text_widget_font_color');
+    Array.from(fontColoredItems).forEach(function(el) {
+      el.style.color = colorPicker.value;
+    });
+  }
+
   function disableForm () {
     document.getElementById('message_name').disabled = true;
     document.getElementById('message_email').disabled = true;
@@ -32,8 +39,10 @@
   }
 
   function setDefaults () {
-    document.getElementById('widget_background_color').value = '#26B55D';
+    document.getElementById('widget_background_color').value = '<%= @widget.background_color %>';
     previewBackgroundColor(document.getElementById('widget_background_color'));
+    document.getElementById('widget_font_color').value = '<%= @widget.font_color %>';
+    previewFontColor(document.getElementById('widget_font_color'));
   }
 
   setDefaults();

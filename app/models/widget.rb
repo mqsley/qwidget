@@ -10,6 +10,6 @@ class Widget < ApplicationRecord
     self.client_id = SecureRandom.hex(5)
   end
 
-  validates :name, :welcome_message, :background_color, :shape, presence: true
+  validates :name, :welcome_message, :background_color, :shape, :font_color, presence: true
 
 end
